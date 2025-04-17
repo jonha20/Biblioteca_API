@@ -1,0 +1,169 @@
+:root {
+  --botonReadMore: #007bff;
+  --botonBuyAmazon: #f7a600;
+  --color-blanco: white;
+  --color-fondo: black;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+header {
+  font-family: "Georgia", serif;
+  display: inline-block;
+  background: var(--color-blanco);
+  margin: 0 auto;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+header h1 {
+  font-size: 20px;
+  margin: 0;
+  color: black;
+}
+header h1 span {
+  font-size: 12px;
+  color: gray;
+}
+
+header h2 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-blanco);
+  padding-left: 130px;
+  padding-right: 20px;
+}
+article {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+article #tarjetasLista {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #ddd; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: var(--color-blanco); /* Fondo claro */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  margin: 10px;
+  padding: 10px;
+}
+article #tarjetasLista h1 {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  color: var(--color-fondo);
+}
+article #tarjetasLista p {
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 10px;
+  color: #333; /* Texto gris oscuro */
+}
+
+article #tarjetasLista button {
+  width: 60%;
+  margin: 0 auto; /* Centrar el botón */
+  background-color: var(--botonReadMore); /* Azul brillante */
+  color: var(--color-blanco); /* Texto blanco */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+article #tarjetasLista button:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
+article #tarjetasBooks {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #ddd; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: var(--color-blanco); /* Fondo claro */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  margin: 10px;
+  padding: 10px;
+}
+article #tarjetasBooks h2 {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  color: var(--color-fondo);
+}
+article #tarjetasBooks p {
+  font-size: 14px;
+  margin: 0;
+  margin: 20px 0px;
+  color: #333; /* Texto gris oscuro */
+}
+article #tarjetasBooks img {
+  width: 90%;
+  height: 40vh;
+}
+
+article #tarjetasBooks button a {
+  text-decoration: none;
+  color: var(--color-blanco);
+  font-weight: bold;
+}
+
+article #tarjetasBooks button {
+  width: 60%;
+  margin: 0 auto; /* Centrar el botón */
+  background-color: var(--botonBuyAmazon); /* Azul brillante */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+article #tarjetasBooks button:hover {
+  background-color: rgb(255, 153, 0); /* Azul más oscuro al pasar el ratón */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-fondo); /* Fondo oscuro */
+    color: var(--color-blanco); /* Texto blanco */
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra superior */
+    transform: translateY(100%); /* Oculta el footer inicialmente */
+    transition: transform 0.3s ease; /* Transición suave */
+  }
+  
+  body:has(:is(html):last-child) footer {
+    transform: translateY(0); /* Muestra el footer al llegar al final */
+  }
+
+#back{
+    width: 20%;
+    margin: 0 30px; /* Centrar el botón */
+    background-color: var(--botonBuyAmazon); /* Azul brillante */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
