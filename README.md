@@ -20,9 +20,8 @@
 
 Puedes acceder a la aplicación directamente desde GitHub Pages:
 
-👉 [https://tu-usuario.github.io/nyt-books-explorer](https://tu-usuario.github.io/nyt-books-explorer)
+👉 https://jonha20.github.io/Biblioteca_API/index.html
 
-_(Reemplaza el enlace con el real cuando lo tengas desplegado)_
 
 ## 🧪 Tecnologías utilizadas
 
