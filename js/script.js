@@ -11,8 +11,6 @@ const getList = async () => {
   }
 };
 
-
-
 const getListGenero = async (listname) => {
   try {
     const response = await fetch(
@@ -28,26 +26,24 @@ const getListGenero = async (listname) => {
 
 const filterWM = async () => {
   const data = await getList();
-  //crear contenedor para lista
-  // const article = document.createElement("article");
-  // document.getElementById("contenedor").appendChild(article);
-  let weeklyData = data.filter(element => element.updated == "WEEKLY")
-  let monthlyData = data.filter(element => element.updated == "MONTHLY")
+  //crear contenedor para listas
+  let weeklyData = data.filter((element) => element.updated == "WEEKLY");
+  let monthlyData = data.filter((element) => element.updated == "MONTHLY");
   console.log(weeklyData);
   console.log(monthlyData);
-  
-  
+
   //pintar haciendo el filtro
-    document.getElementById("filtroMW").addEventListener("change", async () => {
-    const contenedor = document.getElementById("contenedor");
-    contenedor.innerHTML = ""; // Limpiar todo
-    
+  document.getElementById("filtroMW").addEventListener("change", async () => {
+    document.getElementById("NYT").innerHTML = ""; // Limpiar todo
+
     const select = document.getElementById("filtroMW");
-    const textoSeleccionado = select.options[select.selectedIndex].text.toUpperCase();
-    
+    const textoSeleccionado =
+      select.options[select.selectedIndex].text.toUpperCase();
+
     // Crear un NUEVO article en cada filtrado
-    const article = document.createElement("article");
-    contenedor.appendChild(article);
+    // const article = document.createElement("article");
+    // article.id = "NYT";
+    // document.getElementById("contenedor").appendChild(article);
 
     let datosFiltrados = [];
     if (textoSeleccionado == "WEEKLY") {
@@ -61,17 +57,16 @@ const filterWM = async () => {
 
     // Generar HTML (usando clases en lugar de IDs)
     datosFiltrados.forEach((element) => {
-      article.innerHTML += `
-        <section class="tarjeta-lista">
-          <h1>${element.list_name}</h1>
-          <p>Oldest: ${element.oldest_published_date}</p>
-          <p>Newest: ${element.newest_published_date}</p>
-          <button class="btn-read-more" data-list-name="${element.list_name_encoded}">
-            READ MORE!
-          </button>
-        </section>`;
+      document.getElementById("NYT").innerHTML += `<section id="tarjetasLista"> 
+      <h1>${element.list_name}</h1> 
+      <p>Oldest: ${element.oldest_published_date}</p>
+      <p>Newest: ${element.newest_published_date}</p>        
+      <p>Updated: ${element.updated}</p>       
+      <button id='readMore' data-list-name='${element.list_name_encoded}'>READ MORE!</button>    
+      </section>`;
+    readMore();
     });
-  })
+  });
 };
 const printBestSellers = async () => {
   const data = await getList();
@@ -88,7 +83,6 @@ const printBestSellers = async () => {
       </section>`;
     readMore();
   });
-  filterWM()
 };
 
 const readMore = () => {
@@ -122,5 +116,6 @@ const readMore = () => {
 
 // Iniciar la aplicación
 document.addEventListener("DOMContentLoaded", async () => {
- await printBestSellers()
+  await printBestSellers();
+  await filterWM();
 });
