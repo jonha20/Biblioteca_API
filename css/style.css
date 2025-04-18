@@ -3,6 +3,7 @@
   --botonBuyAmazon: #f7a600;
   --color-blanco: white;
   --color-fondo: black;
+  --color-footer:rgb(83, 83, 83);
 }
 * {
   margin: 0;
@@ -10,120 +11,112 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
 header {
   font-family: "Georgia", serif;
-  display: inline-block;
+  text-align: center;
   background: var(--color-blanco);
-  margin: 0 auto;
   padding: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 header h1 {
-  font-size: 20px;
-  margin: 0;
+  font-size: 18px;
   color: black;
 }
+
 header h1 span {
   font-size: 12px;
   color: gray;
 }
 
 header h2 {
-  font-size: 40px;
+  font-size: 24px;
   font-weight: bold;
   margin: 0;
   background-color: var(--color-fondo);
   color: var(--color-blanco);
-  padding-left: 130px;
-  padding-right: 20px;
-}
-article {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-article #tarjetasLista {
-  display: flex;
-  width: 30%;
-  height: 20vh;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid #ddd; /* Borde suave */
-  border-radius: 8px; /* Bordes redondeados */
-  background-color: var(--color-blanco); /* Fondo claro */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  margin: 10px;
   padding: 10px;
 }
-article #tarjetasLista h1 {
-  font-size: 20px;
-  margin: 0;
-  margin-bottom: 20px;
-  color: var(--color-fondo);
-}
-article #tarjetasLista p {
-  font-size: 14px;
-  margin: 0;
-  margin-bottom: 10px;
-  color: #333; /* Texto gris oscuro */
-}
 
-article #tarjetasLista button {
-  width: 60%;
-  margin: 0 auto; /* Centrar el botón */
-  background-color: var(--botonReadMore); /* Azul brillante */
-  color: var(--color-blanco); /* Texto blanco */
-  border: none; /* Sin borde */
-  padding: 10px 20px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  font-size: 16px; /* Tamaño de fuente */
-  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-}
-article #tarjetasLista button:hover {
-  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
-}
-
-article #tarjetasBooks {
-  flex: 0 1 calc(20% - 20px); /* Ajusta el ancho de cada tarjeta */
+article {
   display: flex;
-  height: 55vh; /* Altura de la tarjeta */
-  flex-direction: column; /* Asegura que los elementos estén en columna */
-  justify-content: space-between; /* Espaciado entre elementos */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+article #tarjetasLista,
+article #tarjetasBooks {
+  flex: 0 1 100%; /* Ocupan todo el ancho en dispositivos móviles */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   border: 2px solid #ddd;
   border-radius: 8px;
   background-color: var(--color-blanco);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 10px 0; /* Espaciado vertical */
-} 
+}
+
+article #tarjetasLista h1,
 article #tarjetasBooks h2 {
-  font-size: 20px;
-  margin: 0;
-  margin-bottom: 20px;
+  font-size: 18px;
+  margin: 0 0 10px 0;
   color: var(--color-fondo);
   text-align: center;
-  min-height: 50px; /* Altura mínima para el título */
+  min-height: 50px;
   display: flex;
-  align-items: center; /* Centra verticalmente el texto si ocupa una sola línea */
-  justify-content: center; /* Centra horizontalmente el texto */
+  align-items: center;
+  justify-content: center;
 }
+
+article #tarjetasLista p,
 article #tarjetasBooks p {
   font-size: 14px;
-  margin: 0;
-  margin: 20px 0px;
-  color: #333; /* Texto gris oscuro */
+  margin: 5px 0;
+  color: #333;
 }
+
 article #tarjetasBooks img {
-  width: 90%;
-  height: 20vh;
-  height: auto; /* Mantiene la proporción de la imagen */
+  width: 100%;
+  max-width: 200px;
+  height: auto;
   display: block;
-  margin: auto; /* Centra la imagen horizontalmente */
+  margin: 10px auto;
+}
+
+article #tarjetasLista button {
+  width: 80%;
+  margin: 10px auto 0;
+  background-color: var(--botonReadMore);
+  color: var(--color-blanco);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+article #tarjetasBooks button {
+  background-color: var(--botonBuyAmazon);
+  width: 80%;
+  margin: 10px auto 0;
+  color: var(--color-blanco);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+article #tarjetasLista button:hover,
+article #tarjetasBooks button:hover {
+  background-color: #0056b3;
 }
 
 article #tarjetasBooks button a {
@@ -132,35 +125,39 @@ article #tarjetasBooks button a {
   font-weight: bold;
 }
 
-article #tarjetasBooks button {
-  width: 60%;
-  margin: 0 auto; /* Centrar el botón */
-  margin-top: auto; /* Empujar el botón hacia abajo */
-  background-color: var(--botonBuyAmazon); /* Azul brillante */
-  color: white; /* Texto blanco */
-  border: none; /* Sin borde */
-  padding: 10px 20px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  font-size: 16px; /* Tamaño de fuente */
-  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-}
-article #tarjetasBooks button:hover {
-  background-color: rgb(255, 153, 0); /* Azul más oscuro al pasar el ratón */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--color-footer); /* Fondo oscuro */
+  color: var(--color-blanco); /* Texto blanco */
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Sombra superior */
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--color-fondo); /* Fondo oscuro */
-  color: var(--color-blanco); /* Texto blanco */
-  text-align: center;
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra superior */
-  transform: translateY(100%); /* Oculta el footer inicialmente */
-  transition: transform 0.3s ease; /* Transición suave */
+footer a {
+  color: var(--color-blanco); /* Enlace blanco */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+footer a:hover {
+  color: #ddd; /* Cambia el color al pasar el ratón */
+}
+
+#github-icon img,
+#linkedin-icon img {
+  width: 20px; /* Tamaño del ícono */
+  height: 20px;
+  margin-left: 10px; /* Espaciado entre los íconos y el texto */
+  vertical-align: middle; /* Alinea los íconos con el texto */
+  transition: transform 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+#github-icon img:hover,
+#linkedin-icon img:hover {
+  transform: scale(1.2); /* Aumenta el tamaño al pasar el ratón */
 }
 
 body:has(:is(html):last-child) footer {
@@ -168,8 +165,9 @@ body:has(:is(html):last-child) footer {
 }
 #filtro {
   width: 50%; /* Ancho del select */
+  margin: 0 auto; /* Centrar el select */
+  display: block; /* Asegura que el select ocupe el ancho completo */
   padding: 10px; /* Espaciado interno */
-  margin: 20px auto; /* Centrado y margen superior/inferior */
   border: 2px solid #ddd; /* Borde suave */
   border-radius: 5px; /* Bordes redondeados */
   font-size: 16px; /* Tamaño de fuente */
@@ -228,7 +226,7 @@ body:has(:is(html):last-child) footer {
   padding: 10px 20px; /* Espaciado interno */
   border-radius: 5px; /* Bordes redondeados */
   cursor: pointer; /* Cambia el cursor al pasar por encima */
-  font-size: 16px; /* Tamaño de fuente */
+  font-size: 12px; /* Tamaño de fuente */
   transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
 }
 /* Spinner de carga */
@@ -267,5 +265,39 @@ body:has(:is(html):last-child) footer {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Media Queries para pantallas más grandes */
+@media (min-width: 768px) {
+  article #tarjetasLista,
+  article #tarjetasBooks {
+    flex: 0 1 calc(50% - 20px); /* Ocupan la mitad del ancho */
+  }
+
+  article {
+    gap: 20px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  header h2 {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  article #tarjetasLista,
+  article #tarjetasBooks {
+    flex: 0 1 calc(20% - 20px); /* Ocupan un cuarto del ancho */
+  }
+  header h1 {
+    font-size: 28px;
+  }
+
+  header h2 {
+    font-size: 40px;
   }
 }

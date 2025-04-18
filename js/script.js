@@ -1,4 +1,5 @@
-const API_KEY = "ObosYncmrxI6EvLTGsJGVDoZBs1xeVaZ";
+// Asegúrate de que config.js esté cargado antes de este archivo en el HTML
+const API_KEY = CONFIG.API_KEY;
 const getList = async () => {
   try {
     const response = await fetch(
@@ -36,6 +37,7 @@ const hideLoading = () => {
     loadingDiv.remove();
   }
 };
+
 const filter = (data) => {
   //pintar haciendo el filtro
   document.getElementById("filtro").addEventListener("change", async () => {
@@ -279,7 +281,7 @@ const readMore = () => {
       const listName = button.getAttribute("data-list-name");
       document.getElementById("NYT").innerHTML = "";
       document.getElementById("volverAtras").innerHTML = `
-        <div id='divBack'><button id='back'>< VOLVER A LISTAS DE LIBROS</button></div>        
+        <div id='divBack'><button id='back'>VOLVER</button></div>        
         `;
       //generar opciones de filtro en generos
       document.getElementById("filtro").innerHTML = "";
