@@ -40,6 +40,7 @@ _(Reemplaza el enlace con el real cuando lo tengas desplegado)_
 <img src="./assets/img/books.png" alt="Página de libros" width="800"/>
 
 
+
 ## 📄 Licencia
 
 Este proyecto está licenciado bajo la [MIT License](LICENSE).
