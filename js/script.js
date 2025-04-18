@@ -26,17 +26,22 @@ const getListGenero = async (listname) => {
 
 const filterWM = async () => {
   const data = await getList();
-  //crear contenedor para listas
-  let weeklyData = data.filter((element) => element.updated == "WEEKLY");
-  let monthlyData = data.filter((element) => element.updated == "MONTHLY");
-  console.log(weeklyData);
-  console.log(monthlyData);
 
   //pintar haciendo el filtro
-  document.getElementById("filtroMW").addEventListener("change", async () => {
+  document.getElementById("filtro").addEventListener("change", async () => {
     document.getElementById("NYT").innerHTML = ""; // Limpiar todo
-
-    const select = document.getElementById("filtroMW");
+    //vaciar los arrays
+    
+    // //Filtro Weekly / Monthly
+    // let weeklyData =
+    // let monthlyData = 
+    // //Filtro A-Z / Z-A
+    // let az =
+    // let za = 
+    // //Filtro fecha oldest
+    // let oldestNuevo = 
+    // let oldestAntiguo = 
+    const select = document.getElementById("filtro");
     const textoSeleccionado =
       select.options[select.selectedIndex].text.toUpperCase();
 
@@ -47,9 +52,21 @@ const filterWM = async () => {
 
     let datosFiltrados = [];
     if (textoSeleccionado == "WEEKLY") {
-      datosFiltrados = weeklyData;
+      datosFiltrados =  data.filter((element) => element.updated == "WEEKLY");
     } else if (textoSeleccionado == "MONTHLY") {
-      datosFiltrados = monthlyData;
+      datosFiltrados = data.filter((element) => element.updated == "MONTHLY");
+    }else if (textoSeleccionado == "A-Z") {
+      datosFiltrados =  data.sort((a, b) => a.list_name.localeCompare(b.list_name));
+    }else if (textoSeleccionado == "Z-A") {
+      datosFiltrados = data.sort((a, b) => b.list_name.localeCompare(a.list_name));
+    }else if (textoSeleccionado == "OLDEST MAS NUEVO") {
+      datosFiltrados = data.sort((a, b) => Date.parse(b.oldest_published_date) - Date.parse(a.oldest_published_date));
+    }else if (textoSeleccionado == "OLDEST MAS ANTIGUO") {
+      datosFiltrados = data.sort((a, b) => Date.parse(a.oldest_published_date) - Date.parse(b.oldest_published_date));
+    }else if (textoSeleccionado == "NEWEST MAS NUEVO") {
+      datosFiltrados = data.sort((a, b) => Date.parse(b.newest_published_date) - Date.parse(a.newest_published_date));
+    }else if (textoSeleccionado == "NEWEST MAS ANTIGUO") {
+      datosFiltrados = data.sort((a, b) => Date.parse(a.newest_published_date) - Date.parse(b.newest_published_date));
     } else {
       // Si no es filtro, mostrar todos los datos
       datosFiltrados = data;
