@@ -47,8 +47,20 @@ article {
   padding: 10px;
 }
 
-article #tarjetasLista,
-article #tarjetasBooks {
+ #tarjetasLista {
+  flex: 0 1 100%; /* Ocupan todo el ancho en dispositivos móviles */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: var(--color-blanco);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Estilo para las tarjetas */
+#tarjetasBooks {
   flex: 0 1 100%; /* Ocupan todo el ancho en dispositivos móviles */
   display: flex;
   flex-direction: column;
@@ -61,8 +73,8 @@ article #tarjetasBooks {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-article #tarjetasLista h1,
-article #tarjetasBooks h2 {
+ #tarjetasLista h1,
+ #tarjetasBooks h2 {
   font-size: 18px;
   margin: 0 0 10px 0;
   color: var(--color-fondo);
@@ -73,22 +85,21 @@ article #tarjetasBooks h2 {
   justify-content: center;
 }
 
-article #tarjetasLista p,
-article #tarjetasBooks p {
+ #tarjetasLista p,
+ #tarjetasBooks p {
   font-size: 14px;
   margin: 5px 0;
   color: #333;
 }
 
-article #tarjetasBooks img {
-  width: 100%;
-  max-width: 200px;
+/* Imagen dentro de la tarjeta */
+#tarjetasBooks img {
+  max-width: 100%;
   height: auto;
-  display: block;
-  margin: 10px auto;
+  margin-bottom: 10px;
 }
 
-article #tarjetasLista button {
+ #tarjetasLista button {
   width: 80%;
   margin: 10px auto 0;
   background-color: var(--botonReadMore);
@@ -101,28 +112,31 @@ article #tarjetasLista button {
   transition: background-color 0.3s ease;
 }
 
-article #tarjetasBooks button {
-  background-color: var(--botonBuyAmazon);
-  width: 80%;
-  margin: 10px auto 0;
-  color: var(--color-blanco);
+/* Botón "Buy on Amazon" */
+#tarjetasBooks button {
+  margin-top: auto; /* Empuja el botón hacia el final de la tarjeta */
+  align-self: center; /* Centra el botón horizontalmente */
+  padding: 10px 20px;
+  background-color: var(--botonBuyAmazon); /* Color de fondo */
+  color: #fff;
   border: none;
-  padding: 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s ease;
 }
-
-article #tarjetasLista button:hover,
-article #tarjetasBooks button:hover {
-  background-color: #0056b3;
+ #tarjetasLista button:hover {
+  background-color: var(--botonreadMore); /* Cambia el color al pasar el ratón */
 }
-
-article #tarjetasBooks button a {
+/* Enlace dentro del botón */
+#tarjetasBooks button a {
   text-decoration: none;
-  color: var(--color-blanco);
+  color: #fff;
   font-weight: bold;
+}
+/* Hover para el botón */
+#tarjetasBooks button:hover {
+  background-color:var(--botonBuyAmazon); /* Cambia el color al pasar el ratón */
 }
 
 footer {
@@ -257,6 +271,11 @@ body:has(:is(html):last-child) footer {
   font-size: 18px;
   margin-top: 10px;
   text-align: center;
+}
+#controles-paginacion{
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 @keyframes spin {

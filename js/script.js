@@ -307,6 +307,7 @@ const readMore = () => {
       });
       filterBooks(data);
       searchTiltleAuthor(data);
+      implementarPaginacion();
       // Event listener | Botón volver atrás
       document.querySelector("#back").addEventListener("click", async () => {
         document.getElementById("contenedor").innerHTML = "";
@@ -315,6 +316,78 @@ const readMore = () => {
     });
   });
 };
+const implementarPaginacion = () => {
+  const elementos = document.querySelectorAll("#NYT > section"); // Selecciona todas las entradas existentes
+  const elementosPorPagina = 5; // Número de elementos por página
+  let paginaActual = 1; // Página inicial
+  const totalPaginas = Math.ceil(elementos.length / elementosPorPagina);
+
+  // Crear los controles de paginación
+  const divControles = document.createElement("div");
+  divControles.id = "controles-paginacion";
+
+  const botonAtras = document.createElement("button");
+  botonAtras.id = "atras";
+  botonAtras.textContent = "👈";
+  botonAtras.disabled = true; // Deshabilitado inicialmente
+
+  const spanInformacion = document.createElement("span");
+  spanInformacion.id = "informacion-pagina";
+
+  const botonSiguiente = document.createElement("button");
+  botonSiguiente.id = "siguiente";
+  botonSiguiente.textContent = "👉";
+
+  divControles.appendChild(botonAtras);
+  divControles.appendChild(spanInformacion);
+  divControles.appendChild(botonSiguiente);
+
+  // Añadir los controles al DOM
+  const contenedor = document.getElementById("contenedor");
+  contenedor.appendChild(divControles);
+
+  // Función para mostrar los elementos de la página actual
+  const renderizarPagina = () => {
+    // Ocultar todos los elementos
+    elementos.forEach((elemento, index) => {
+      elemento.style.display = "none";
+      if (
+        index >= (paginaActual - 1) * elementosPorPagina &&
+        index < paginaActual * elementosPorPagina
+      ) {
+        elemento.style.display = "flex"; // Mostrar solo los elementos de la página actual
+        
+      }
+    });
+
+    // Actualizar la información de la página
+    spanInformacion.textContent = `Página ${paginaActual} de ${totalPaginas}`;
+
+    // Habilitar/deshabilitar botones según la página actual
+    botonAtras.disabled = paginaActual === 1;
+    botonSiguiente.disabled = paginaActual === totalPaginas;
+  };
+
+  // Event listener para el botón "Atrás"
+  botonAtras.addEventListener("click", () => {
+    if (paginaActual > 1) {
+      paginaActual--;
+      renderizarPagina();
+    }
+  });
+
+  // Event listener para el botón "Siguiente"
+  botonSiguiente.addEventListener("click", () => {
+    if (paginaActual < totalPaginas) {
+      paginaActual++;
+      renderizarPagina();
+    }
+  });
+
+  // Renderizar la primera página
+  renderizarPagina();
+};
+
 
 // Iniciar la aplicación
 document.addEventListener("DOMContentLoaded", async () => {

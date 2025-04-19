@@ -12,9 +12,13 @@
   - Orden por **fecha de publicación** (ascendente y descendente).
 - 🔍 **Buscadores inteligentes**:
   - Búsqueda por **nombre de género**.
-  - Búsqueda por **autor y titulo**.
+  - Búsqueda por **autor y título**.
 - ✨ **Animaciones de carga** al aplicar filtros y búsquedas para mejorar la experiencia de usuario.
 - 📱 **Diseño responsive y Mobile First**, optimizado para todos los dispositivos.
+- 📄 **Paginación de resultados**:
+  - Muestra una cantidad limitada de libros por página, de 5 en 5.
+  - Navegación entre páginas mediante botones "Anterior" y "Siguiente".
+  - Mejora el rendimiento y la legibilidad al manejar listas largas.
 
 ## 🌐 Acceso
 
