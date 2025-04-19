@@ -24,6 +24,7 @@ const getListGenero = async (listname) => {
     console.error(error);
   }
 };
+
 const showLoading = () => {
   const loadingDiv = document.createElement("div");
   loadingDiv.id = "loading";
@@ -118,7 +119,6 @@ const filter = (data) => {
   });
 };
 
-// Modifica tu función de filtro para incluir la animación
 const filterBooks = (data) => {
   document.getElementById("filtro").addEventListener("change", async () => {
     showLoading(); // Muestra la animación de carga
@@ -277,6 +277,8 @@ const printGenre = async () => {
 const readMore = () => {
   document.querySelectorAll("#readMore").forEach((button) => {
     button.addEventListener("click", async () => {
+      showLoading(); // Muestra la animación de carga
+        setTimeout(async() => {
       document.getElementById("buscar").placeholder = "Author or Title";
       const listName = button.getAttribute("data-list-name");
       document.getElementById("NYT").innerHTML = "";
@@ -308,14 +310,21 @@ const readMore = () => {
       filterBooks(data);
       searchTiltleAuthor(data);
       implementarPaginacion();
+     
       // Event listener | Botón volver atrás
       document.querySelector("#back").addEventListener("click", async () => {
-        document.getElementById("contenedor").innerHTML = "";
-        await printGenre();
+        showLoading(); // Muestra la animación de carga
+        setTimeout(() => {
+        location.reload(); // Recarga la página
+        hideLoading(); // Oculta la animación de carga
+    }, 1000);
       });
+      hideLoading(); // Oculta la animación de carga
+    }, 1000);
     });
   });
 };
+
 const implementarPaginacion = () => {
   const elementos = document.querySelectorAll("#NYT > section"); // Selecciona todas las entradas existentes
   const elementosPorPagina = 5; // Número de elementos por página
@@ -387,7 +396,6 @@ const implementarPaginacion = () => {
   // Renderizar la primera página
   renderizarPagina();
 };
-
 
 // Iniciar la aplicación
 document.addEventListener("DOMContentLoaded", async () => {
