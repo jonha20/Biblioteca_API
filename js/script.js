@@ -325,12 +325,15 @@ const readMore = () => {
           document.getElementById(
             "NYT"
           ).innerHTML += `<section id="tarjetasBooks"> 
+          <div class="tarjetasBooks-header">
           <h2>#${element.rank} ${element.title}</h2> 
+          <button type="button" id="favs">⭐</button>  
+          </div>
           <img src="${element.book_image}" alt="">
           <p>Author: ${element.author}</p>
           <p>Weeks on list: ${element.weeks_on_list}</p>
-          <p>${element.description}</p>        
-          <button type="button" id="readMore"><a href="${element.amazon_product_url}">BUY ON AMAZON</a></button>      
+          <p>${element.description}</p>       
+          <button type="button" id="readMore"><a href="${element.amazon_product_url}">COMPRAR EN AMAZON</a></button>      
           </section>`;
         });
         filterBooks(data);
