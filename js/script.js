@@ -1,3 +1,17 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDgPLImBJOyDhZ2M6jO7I4FomdLEMlAoSs",
+  authDomain: "newyorktimes-c1a3e.firebaseapp.com",
+  projectId: "newyorktimes-c1a3e",
+  storageBucket: "newyorktimes-c1a3e.firebasestorage.app",
+  messagingSenderId: "92835308280",
+  appId: "1:92835308280:web:24bc0699395c09258b910d",
+  measurementId: "G-LSDQ4GMG86",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig); // Inicializaar app Firebase
+const db = firebase.firestore(); // db representa mi BBDD //inicia Firestore
+
 // Asegúrate de que config.js esté cargado antes de este archivo en el HTML
 const API_KEY = CONFIG.API_KEY;
 const getList = async () => {
@@ -45,76 +59,82 @@ const filter = (data) => {
     document.getElementById("NYT").innerHTML = ""; // Limpiar todo
     showLoading(); // Muestra la animación de carga
     setTimeout(() => {
-    //lectura de filtro
-    const select = document.getElementById("filtro");
-    const textoSeleccionado =
-      select.options[select.selectedIndex].text.toUpperCase();
+      //lectura de filtro
+      const select = document.getElementById("filtro");
+      const textoSeleccionado =
+        select.options[select.selectedIndex].text.toUpperCase();
 
-    //vaciar arrays y filtros
-    let datosFiltrados = [];
-    //filtros
-    switch (textoSeleccionado) {
-      case "WEEKLY":
-        datosFiltrados = data.filter((element) => element.updated == "WEEKLY");
-        break;
-      case "MONTHLY":
-        datosFiltrados = data.filter((element) => element.updated == "MONTHLY");
-        break;
-      case "A-Z":
-        datosFiltrados = data.sort((a, b) =>
-          a.list_name.localeCompare(b.list_name)
-        );
-        break;
-      case "Z-A":
-        datosFiltrados = data.sort((a, b) =>
-          b.list_name.localeCompare(a.list_name)
-        );
-        break;
-      case "OLDEST MAS NUEVO":
-        datosFiltrados = data.sort(
-          (a, b) =>
-            Date.parse(b.oldest_published_date) -
-            Date.parse(a.oldest_published_date)
-        );
-        break;
-      case "OLDEST MAS ANTIGUO":
-        datosFiltrados = data.sort(
-          (a, b) =>
-            Date.parse(a.oldest_published_date) -
-            Date.parse(b.oldest_published_date)
-        );
-        break;
-      case "NEWEST MAS NUEVO":
-        datosFiltrados = data.sort(
-          (a, b) =>
-            Date.parse(b.newest_published_date) -
-            Date.parse(a.newest_published_date)
-        );
-        break;
-      case "NEWEST MAS ANTIGUO":
-        datosFiltrados = data.sort(
-          (a, b) =>
-            Date.parse(a.newest_published_date) -
-            Date.parse(b.newest_published_date)
-        );
-        break;
-      default:
-        // Si no es filtro, mostrar todos los datos
-        datosFiltrados = data;
-        break;
-    }
-    // Generar HTML con los datos filtrados
-    datosFiltrados.forEach((element) => {
-      document.getElementById("NYT").innerHTML += `<section id="tarjetasLista"> 
+      //vaciar arrays y filtros
+      let datosFiltrados = [];
+      //filtros
+      switch (textoSeleccionado) {
+        case "WEEKLY":
+          datosFiltrados = data.filter(
+            (element) => element.updated == "WEEKLY"
+          );
+          break;
+        case "MONTHLY":
+          datosFiltrados = data.filter(
+            (element) => element.updated == "MONTHLY"
+          );
+          break;
+        case "A-Z":
+          datosFiltrados = data.sort((a, b) =>
+            a.list_name.localeCompare(b.list_name)
+          );
+          break;
+        case "Z-A":
+          datosFiltrados = data.sort((a, b) =>
+            b.list_name.localeCompare(a.list_name)
+          );
+          break;
+        case "OLDEST MAS NUEVO":
+          datosFiltrados = data.sort(
+            (a, b) =>
+              Date.parse(b.oldest_published_date) -
+              Date.parse(a.oldest_published_date)
+          );
+          break;
+        case "OLDEST MAS ANTIGUO":
+          datosFiltrados = data.sort(
+            (a, b) =>
+              Date.parse(a.oldest_published_date) -
+              Date.parse(b.oldest_published_date)
+          );
+          break;
+        case "NEWEST MAS NUEVO":
+          datosFiltrados = data.sort(
+            (a, b) =>
+              Date.parse(b.newest_published_date) -
+              Date.parse(a.newest_published_date)
+          );
+          break;
+        case "NEWEST MAS ANTIGUO":
+          datosFiltrados = data.sort(
+            (a, b) =>
+              Date.parse(a.newest_published_date) -
+              Date.parse(b.newest_published_date)
+          );
+          break;
+        default:
+          // Si no es filtro, mostrar todos los datos
+          datosFiltrados = data;
+          break;
+      }
+      // Generar HTML con los datos filtrados
+      datosFiltrados.forEach((element) => {
+        document.getElementById(
+          "NYT"
+        ).innerHTML += `<section id="tarjetasLista"> 
       <h1>${element.list_name}</h1> 
       <p>Oldest: ${element.oldest_published_date}</p>
       <p>Newest: ${element.newest_published_date}</p>        
       <p>Updated: ${element.updated}</p>       
       <button id='readMore' data-list-name='${element.list_name_encoded}'>READ MORE!</button>    
       </section>`;
-      readMore();
-    });
-    hideLoading(); // Oculta la animación de carga
+        readMore();
+      });
+      hideLoading(); // Oculta la animación de carga
     }, 1000);
   });
 };
@@ -131,10 +151,14 @@ const filterBooks = (data) => {
       let datosFiltrados = [];
       switch (textoSeleccionado) {
         case "AUTOR ASCENDENTE":
-          datosFiltrados = data.sort((a, b) => a.author.localeCompare(b.author));
+          datosFiltrados = data.sort((a, b) =>
+            a.author.localeCompare(b.author)
+          );
           break;
         case "AUTOR DESCENDENTE":
-          datosFiltrados = data.sort((a, b) => b.author.localeCompare(a.author));
+          datosFiltrados = data.sort((a, b) =>
+            b.author.localeCompare(a.author)
+          );
           break;
         case "TITULO ASCENDENTE":
           datosFiltrados = data.sort((a, b) => a.title.localeCompare(b.title));
@@ -148,7 +172,9 @@ const filterBooks = (data) => {
       }
 
       datosFiltrados.forEach((element) => {
-        document.getElementById("NYT").innerHTML += `<section id="tarjetasBooks"> 
+        document.getElementById(
+          "NYT"
+        ).innerHTML += `<section id="tarjetasBooks"> 
           <h2>#${element.rank} ${element.title}</h2> 
           <img src="${element.book_image}" alt="">
           <p>Author: ${element.author}</p>
@@ -167,53 +193,52 @@ const searchGenre = (data) => {
   document.getElementById("buscarBtn").addEventListener("click", async () => {
     showLoading(); // Muestra la animación de carga
     setTimeout(() => {
-    document.getElementById("NYT").innerHTML = "";
-    const searchTerm = document.getElementById("buscar").value;
-    let searchData = [];
-    searchData = data.filter((element) =>
-      element.list_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    if (searchData.length > 0) {
-      searchData.forEach((element) => {
-        document.getElementById(
-          "NYT"
-        ).innerHTML += `<section id="tarjetasLista"> 
+      document.getElementById("NYT").innerHTML = "";
+      const searchTerm = document.getElementById("buscar").value;
+      let searchData = [];
+      searchData = data.filter((element) =>
+        element.list_name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      if (searchData.length > 0) {
+        searchData.forEach((element) => {
+          document.getElementById(
+            "NYT"
+          ).innerHTML += `<section id="tarjetasLista"> 
         <h1>${element.list_name}</h1> 
         <p>Oldest: ${element.oldest_published_date}</p>
         <p>Newest: ${element.newest_published_date}</p>        
         <p>Updated: ${element.updated}</p>       
         <button id='readMore' data-list-name='${element.list_name_encoded}'>READ MORE!</button>    
         </section>`;
-        readMore();
-      });
-    } else {
-      document.getElementById("NYT").innerHTML = `<h2>No results found</h2>`;
-    }
-    hideLoading(); // Oculta la animación de carga
-  }, 1000);
+          readMore();
+        });
+      } else {
+        document.getElementById("NYT").innerHTML = `<h2>No results found</h2>`;
+      }
+      hideLoading(); // Oculta la animación de carga
+    }, 1000);
   });
-  
 };
 
 const searchTiltleAuthor = (data) => {
   document.getElementById("buscarBtn").addEventListener("click", async () => {
     showLoading(); // Muestra la animación de carga
     setTimeout(() => {
-    document.getElementById("NYT").innerHTML = "";
-    const searchTerm = document.getElementById("buscar").value;
-    let searchBookTitle = [];
-    searchBookTitle = data.filter((element) =>
-      element.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    let searchBookAuthor = [];
-    searchBookAuthor = data.filter((element) =>
-      element.author.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    if (searchBookTitle.length > 0) {
-      searchBookTitle.forEach((element) => {
-        document.getElementById(
-          "NYT"
-        ).innerHTML += `<section id="tarjetasBooks"> 
+      document.getElementById("NYT").innerHTML = "";
+      const searchTerm = document.getElementById("buscar").value;
+      let searchBookTitle = [];
+      searchBookTitle = data.filter((element) =>
+        element.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      let searchBookAuthor = [];
+      searchBookAuthor = data.filter((element) =>
+        element.author.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      if (searchBookTitle.length > 0) {
+        searchBookTitle.forEach((element) => {
+          document.getElementById(
+            "NYT"
+          ).innerHTML += `<section id="tarjetasBooks"> 
           <h2>#${element.rank} ${element.title}</h2> 
           <img src="${element.book_image}" alt="">
           <p>Author: ${element.author}</p>
@@ -221,12 +246,12 @@ const searchTiltleAuthor = (data) => {
           <p>${element.description}</p>        
           <button type="button" id="readMore"><a href="${element.amazon_product_url}">BUY ON AMAZON</a></button>      
           </section>`;
-      });
-    } else if (searchBookAuthor.length > 0) {
-      searchBookAuthor.forEach((element) => {
-        document.getElementById(
-          "NYT"
-        ).innerHTML += `<section id="tarjetasBooks"> 
+        });
+      } else if (searchBookAuthor.length > 0) {
+        searchBookAuthor.forEach((element) => {
+          document.getElementById(
+            "NYT"
+          ).innerHTML += `<section id="tarjetasBooks"> 
           <h2>#${element.rank} ${element.title}</h2> 
           <img src="${element.book_image}" alt="">
           <p>Author: ${element.author}</p>
@@ -234,11 +259,12 @@ const searchTiltleAuthor = (data) => {
           <p>${element.description}</p>        
           <button type="button" id="readMore"><a href="${element.amazon_product_url}">BUY ON AMAZON</a></button>      
           </section>`;
-      });
-    } else {
-      document.getElementById("NYT").innerHTML = `<h2>No results found</h2>`;
-    } hideLoading(); // Oculta la animación de carga
-  }, 1000);
+        });
+      } else {
+        document.getElementById("NYT").innerHTML = `<h2>No results found</h2>`;
+      }
+      hideLoading(); // Oculta la animación de carga
+    }, 1000);
   });
 };
 
@@ -278,27 +304,27 @@ const readMore = () => {
   document.querySelectorAll("#readMore").forEach((button) => {
     button.addEventListener("click", async () => {
       showLoading(); // Muestra la animación de carga
-        setTimeout(async() => {
-      document.getElementById("buscar").placeholder = "Author or Title";
-      const listName = button.getAttribute("data-list-name");
-      document.getElementById("NYT").innerHTML = "";
-      document.getElementById("volverAtras").innerHTML = `
+      setTimeout(async () => {
+        document.getElementById("buscar").placeholder = "Author or Title";
+        const listName = button.getAttribute("data-list-name");
+        document.getElementById("NYT").innerHTML = "";
+        document.getElementById("volverAtras").innerHTML = `
         <div id='divBack'><button id='back'>VOLVER</button></div>        
         `;
-      //generar opciones de filtro en generos
-      document.getElementById("filtro").innerHTML = "";
-      document.getElementById("filtro").innerHTML = `
+        //generar opciones de filtro en generos
+        document.getElementById("filtro").innerHTML = "";
+        document.getElementById("filtro").innerHTML = `
       <option value="" selected>Select option</option> 
       <option value="AutorASC">Autor ascendente</option>
       <option value="AutorDSC">Autor descendente</option>
       <option value="TitleASC">Titulo ascendente</option>
       <option value="TitleDSC">Titulo descendente</option>
       `;
-      const data = await getListGenero(listName);
-      data.forEach((element) => {
-        document.getElementById(
-          "NYT"
-        ).innerHTML += `<section id="tarjetasBooks"> 
+        const data = await getListGenero(listName);
+        data.forEach((element) => {
+          document.getElementById(
+            "NYT"
+          ).innerHTML += `<section id="tarjetasBooks"> 
           <h2>#${element.rank} ${element.title}</h2> 
           <img src="${element.book_image}" alt="">
           <p>Author: ${element.author}</p>
@@ -306,21 +332,21 @@ const readMore = () => {
           <p>${element.description}</p>        
           <button type="button" id="readMore"><a href="${element.amazon_product_url}">BUY ON AMAZON</a></button>      
           </section>`;
-      });
-      filterBooks(data);
-      searchTiltleAuthor(data);
-      implementarPaginacion();
-     
-      // Event listener | Botón volver atrás
-      document.querySelector("#back").addEventListener("click", async () => {
-        showLoading(); // Muestra la animación de carga
-        setTimeout(() => {
-        location.reload(); // Recarga la página
+        });
+        filterBooks(data);
+        searchTiltleAuthor(data);
+        implementarPaginacion();
+
+        // Event listener | Botón volver atrás
+        document.querySelector("#back").addEventListener("click", async () => {
+          showLoading(); // Muestra la animación de carga
+          setTimeout(() => {
+            location.reload(); // Recarga la página
+            hideLoading(); // Oculta la animación de carga
+          }, 1000);
+        });
         hideLoading(); // Oculta la animación de carga
-    }, 1000);
-      });
-      hideLoading(); // Oculta la animación de carga
-    }, 1000);
+      }, 1000);
     });
   });
 };
@@ -365,7 +391,6 @@ const implementarPaginacion = () => {
         index < paginaActual * elementosPorPagina
       ) {
         elemento.style.display = "flex"; // Mostrar solo los elementos de la página actual
-        
       }
     });
 
@@ -397,7 +422,56 @@ const implementarPaginacion = () => {
   renderizarPagina();
 };
 
+const signOut = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      console.log("Usuario ha cerrado sesión.");
+      // Limpiar localStorage
+      localStorage.removeItem("user");
+      // Redirigir a home.html
+      window.location.href = "./pages/home.html";
+    })
+    .catch((error) => {
+      console.error("Error al cerrar sesión:", error);
+    });
+};
+
+document.getElementById("salir").addEventListener("click", signOut);
+
+// Listener de usuario en el sistema
+// Controlar usuario logado
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    console.log(`Está en el sistema:${user.email} ${user.uid}`);
+  } else {
+    console.log("no hay usuarios en el sistema");
+  }
+});
+
 // Iniciar la aplicación
 document.addEventListener("DOMContentLoaded", async () => {
   await printGenre();
+    // Recuperar el usuario desde localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user) {
+      let logged = user.email.split("@")[0]; // Obtener solo el nombre de usuario sin el dominio
+      console.log(`Usuario logueado: ${user.email}`);
+  
+      // Mostrar el correo del usuario en la página
+      const header = document.querySelector(".header-container");
+      const userInfo = document.createElement("p");
+      userInfo.innerHTML = `Logged as: <span>${logged}</span>`;
+      userInfo.style.marginRight = "20px";
+  
+      // Insertar el texto antes del botón Sign Out
+      const signOutButton = document.getElementById("salir");
+      header.insertBefore(userInfo, signOutButton);
+    } else {
+      console.log("No hay usuario logueado.");
+      // Redirigir a home.html si no hay usuario
+      window.location.href = "./pages/home.html";
+    }
 });
