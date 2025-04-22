@@ -4,8 +4,8 @@ const firebaseConfig = {
   projectId: "newyorktimes-c1a3e",
   storageBucket: "newyorktimes-c1a3e.firebasestorage.app",
   messagingSenderId: "92835308280",
-  appId: "1:92835308280:web:24bc0699395c09258b910d",
-  measurementId: "G-LSDQ4GMG86",
+  appId: "1:92835308280:web:662f1403849072f08b910d",
+  measurementId: "G-5WY7TLPRR6"
 };
 
 // Initialize Firebase
@@ -13,10 +13,11 @@ firebase.initializeApp(firebaseConfig); // Inicializaar app Firebase
 const db = firebase.firestore(); // db representa mi BBDD //inicia Firestore
 
 const createUser = (user) => {
-  db.collection("users")
-    .add(user)
-    .then((docRef) => console.log("Document written with ID: ", docRef.id))
-    .catch((error) => console.error("Error adding document: ", error));
+  db.collection("users") // Asegúrate de que la colección se llame "users"
+    .doc(user.email) // Usar el email como ID del documento
+    .set(user) // Guardar los datos del usuario
+    .then(() => console.log("Usuario creado con éxito:", user.email))
+    .catch((error) => console.error("Error al crear el usuario en Firestore:", error));
 };
 
 const signUpUser = (email, password) => {
@@ -24,16 +25,23 @@ const signUpUser = (email, password) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in
+      // Usuario registrado
       let user = userCredential.user;
-      console.log(`se ha registrado ${user.email} ID:${user.uid}`);
-      alert(`se ha registrado ${user.email} ID:${user.uid}`);
+      console.log(`Se ha registrado ${user.email} ID:${user.uid}`);
       
-      // Guardar el usuario en Firestore
-      createUser({
+      db.collection("users").doc(user.email).set({
         email: user.email,
-        id: user.uid, // Cambiado de user.id a user.uid
-      });
+        id: user.uid, // UID del usuario
+        favorites: []
+      }).then(() => alert("Usuario creado con éxito:", user.email))
+      .catch((error) => alert("Error al crear el usuario en Firestore:", error));
+
+      // Guardar el usuario en Firestore
+      // createUser({
+      //   email: user.email,
+      //   id: user.uid, // UID del usuario
+      //   favorites: [] // Inicializar favoritos como un array vacío
+      // });
 
       // Guardar el usuario en localStorage
       localStorage.setItem("user", JSON.stringify({ email: user.email }));
@@ -42,10 +50,7 @@ const signUpUser = (email, password) => {
       window.location.href = "../index.html";
     })
     .catch((error) => {
-      console.log(
-        "Error en el sistema" + error.message,
-        "Error: " + error.code
-      );
+      console.error("Error al registrar el usuario:", error);
     });
 };
 
@@ -67,7 +72,6 @@ const signInUser = (email, password) => {
       console.log(errorMessage);
     });
 };
-
 
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
@@ -120,7 +124,6 @@ document.getElementById("singin").addEventListener("submit", function (event) {
       console.error("Error al iniciar sesión:", error);
     });
 });
-
 
 // Listener de usuario en el sistema
 // Controlar usuario logado

@@ -4,8 +4,8 @@ const firebaseConfig = {
   projectId: "newyorktimes-c1a3e",
   storageBucket: "newyorktimes-c1a3e.firebasestorage.app",
   messagingSenderId: "92835308280",
-  appId: "1:92835308280:web:24bc0699395c09258b910d",
-  measurementId: "G-LSDQ4GMG86",
+  appId: "1:92835308280:web:662f1403849072f08b910d",
+  measurementId: "G-5WY7TLPRR6"
 };
 
 // Initialize Firebase
@@ -434,40 +434,32 @@ const signOut = () => {
     });
 };
 
-document.getElementById("salir").addEventListener("click", signOut);
+const paintFavs = () => {
 
-// Listener de usuario en el sistema
-// Controlar usuario logado
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    console.log(`Está en el sistema:${user.email} ${user.uid}`);
-  } else {
-    console.log("no hay usuarios en el sistema");
-  }
-});
+}
+
 
 // Iniciar la aplicación
 document.addEventListener("DOMContentLoaded", async () => {
   await printGenre();
     // Recuperar el usuario desde localStorage
-    const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) {
+    const userEmail = user.email.split("@")[0];
+    const userName = document.getElementById("user");
 
-    if (user) {
-      let logged = user.email.split("@")[0]; // Obtener solo el nombre de usuario sin el dominio
-      console.log(`Usuario logueado: ${user.email}`);
-  
-      // Mostrar el correo del usuario en la página
-      const header = document.querySelector(".header-container");
-      const userInfo = document.createElement("p");
-      userInfo.innerHTML = `Logged as: <span>${logged}</span>`;
-      userInfo.style.marginRight = "20px";
-  
-      // Insertar el texto antes del botón Sign Out
-      const signOutButton = document.getElementById("salir");
-      header.insertBefore(userInfo, signOutButton);
-    } else {
-      console.log("No hay usuario logueado.");
-      // Redirigir a home.html si no hay usuario
-      window.location.href = "./pages/home.html";
-    }
+    // Mostrar el correo del usuario en el botón
+    userName.textContent = userEmail;
+
+    // Manejar la opción "Ver Favoritos"
+    document.getElementById("viewFavorites").addEventListener("click", () => {
+      document.getElementById("NYT").innerHTML = "";
+    });
+
+    // Manejar la opción "Sign Out"
+    document.getElementById("signOut").addEventListener("click", () => signOut());
+  } else {
+    console.log("No hay usuario logueado.");
+    window.location.href = "./pages/home.html";
+  }
 });
