@@ -190,9 +190,7 @@ const filterBooks = (data) => {
 };
 
 const searchGenre = (data) => {
-  document.getElementById("buscarBtn").addEventListener("click", async () => {
-    showLoading(); // Muestra la animación de carga
-    setTimeout(() => {
+  document.getElementById("buscar").addEventListener("input", async () => {
       document.getElementById("NYT").innerHTML = "";
       const searchTerm = document.getElementById("buscar").value;
       let searchData = [];
@@ -215,15 +213,11 @@ const searchGenre = (data) => {
       } else {
         document.getElementById("NYT").innerHTML = `<h2>No results found</h2>`;
       }
-      hideLoading(); // Oculta la animación de carga
-    }, 1000);
   });
 };
 
 const searchTiltleAuthor = (data) => {
-  document.getElementById("buscarBtn").addEventListener("click", async () => {
-    showLoading(); // Muestra la animación de carga
-    setTimeout(() => {
+  document.getElementById("buscar").addEventListener("input", async () => {
       document.getElementById("NYT").innerHTML = "";
       const searchTerm = document.getElementById("buscar").value;
       let searchBookTitle = [];
@@ -263,8 +257,6 @@ const searchTiltleAuthor = (data) => {
       } else {
         document.getElementById("NYT").innerHTML = `<h2>No results found</h2>`;
       }
-      hideLoading(); // Oculta la animación de carga
-    }, 1000);
   });
 };
 
@@ -303,6 +295,7 @@ const printGenre = async () => {
 const readMore = () => {
   document.querySelectorAll("#readMore").forEach((button) => {
     button.addEventListener("click", async () => {
+      document.getElementById("buscar").value = ""; // Limpia el input
       showLoading(); // Muestra la animación de carga
       setTimeout(async () => {
         document.getElementById("buscar").placeholder = "Author or Title";
