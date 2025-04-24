@@ -47,6 +47,26 @@ article {
   padding: 10px;
 }
 
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--color-footer); /* Fondo oscuro */
+  color: var(--color-blanco); /* Texto blanco */
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Sombra superior */
+}
+
+footer a {
+  color: var(--color-blanco); /* Enlace blanco */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+footer a:hover {
+  color: #ddd; /* Cambia el color al pasar el ratón */
+}
  #tarjetasLista {
   flex: 0 1 100%; /* Ocupan todo el ancho en dispositivos móviles */
   display: flex;
@@ -126,7 +146,7 @@ article {
   transition: background-color 0.3s ease;
 }
  #tarjetasLista button:hover {
-  background-color: var(--botonreadMore); /* Cambia el color al pasar el ratón */
+  background-color: #0056b3; /* Cambia el color al pasar el ratón */
 }
 /* Enlace dentro del botón */
 #tarjetasBooks button a {
@@ -134,31 +154,44 @@ article {
   color: #fff;
   font-weight: bold;
 }
+/* Contenedor del título */
+.tarjetasBooks-header {
+  position: relative; /* Necesario para que la estrella se posicione dentro del contenedor */
+  margin-bottom: 10px;
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+}
+
+/* Estilo del título */
+.tarjetasBooks-header h2 {
+  font-size: 18px;
+  width:70%; /* Asegura que el título ocupe todo el ancho */
+  
+  color: #333;
+  margin: 0;
+}
+
+/* Estilo del botón de la estrella */
+.tarjetasBooks-header button#favs {
+  position: absolute; /* Posiciona la estrella en la esquina superior derecha */
+  top: 0;
+  right: 0;
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin bordes */
+  font-size: 20px; /* Tamaño de la estrella */
+  cursor: pointer;
+  color: #ffcc00; /* Color dorado */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.tarjetasBooks-header button#favs:hover {
+  transform: scale(0.5); /* Efecto de agrandamiento al pasar el cursor */
+  color: #ffaa00; /* Cambiar a un tono más oscuro al pasar el cursor */
+}
 /* Hover para el botón */
 #tarjetasBooks button:hover {
-  background-color:var(--botonBuyAmazon); /* Cambia el color al pasar el ratón */
+  background-color:rgb(163, 92, 0); /* Cambia el color al pasar el ratón */
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: var(--color-footer); /* Fondo oscuro */
-  color: var(--color-blanco); /* Texto blanco */
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Sombra superior */
-}
-
-footer a {
-  color: var(--color-blanco); /* Enlace blanco */
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease; /* Transición suave */
-}
-
-footer a:hover {
-  color: #ddd; /* Cambia el color al pasar el ratón */
-}
 
 #github-icon img,
 #linkedin-icon img {
@@ -216,20 +249,56 @@ body:has(:is(html):last-child) footer {
   width: 50%;
   font-size: 16px;
 }
-#filtroBusqueda button {
+/* Estilo del contenedor del dropdown */
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo del botón del dropdown */
+.container-button {
+  background-color: #007bff;
+  color: white;
   padding: 10px 20px;
-  margin-left: 10px; /* Espaciado entre el input y el botón */
-  background-color: var(--botonReadMore); /* Azul brillante */
-  color: var(--color-blanco); /* Texto blanco */
+  font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
-#filtroBusqueda button:hover {
-  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+.container-button:hover {
+  background-color: #0056b3;
+}
+
+/* Contenido del dropdown */
+.container-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+/* Estilo de los enlaces dentro del dropdown */
+.container-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #ddd;
+}
+
+.container-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Mostrar el dropdown al pasar el cursor */
+.container:hover .container-content {
+  display: block;
 }
 #back {
   width: 20%;
@@ -276,6 +345,59 @@ body:has(:is(html):last-child) footer {
   display: flex;
   justify-content: center;
   margin: 20px 0;
+}
+
+/* Contenedor del encabezado */
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Espaciado entre el título y el botón */
+  align-items: center; /* Alinea verticalmente los elementos */
+  padding: 10px 20px;
+  background-color: var(--color-blanco); /* Fondo blanco */
+  border-bottom: 1px solid #ddd; /* Línea inferior */
+}
+
+/* Estilo del título */
+.header-container h1 {
+  font-size: 24px;
+  color: black;
+  margin: 0;
+}
+.header-container p {
+  font-size: 16px;
+  color: #555; /* Color gris para el texto */
+  margin: 0;
+  padding: 5px 10px;
+  background-color: #f4f4f4; /* Fondo claro */
+  border-radius: 10px; /* Bordes redondeados */
+  display: inline-block; /* Asegura que el texto no ocupe toda la línea */
+  font-weight: bold;
+}
+
+.header-container p span {
+  color: #007bff; /* Color azul para el nombre del usuario */
+}
+
+/* Estilo del botón de Sign Out */
+.signout-button {
+  background-color:var(--botonReadMore); /* Color rojo acorde a la temática */
+  color: var(--color-blanco); /* Texto blanco */
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.signout-button:hover {
+  background-color:rgb(0, 0, 0); /* Color más oscuro al pasar el cursor */
+}
+
+.signout-button:active {
+  transform: scale(0.98); /* Efecto de clic */
 }
 
 @keyframes spin {

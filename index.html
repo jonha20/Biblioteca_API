@@ -10,13 +10,21 @@
   </head>
   <body>
     <header>
-      <h1>New York Times <span>©</span></h1>
+      <div class="header-container">
+        <h1>New York Times <span>©</span></h1>
+        <div class="container">
+          <button id="user" class="container-button">User Email</button>
+          <div class="container-content">
+            <a href="#" id="viewFavorites">Ver Favoritos</a>
+            <a href="#" id="signOut">Sign Out</a>
+          </div>
+        </div>
+      </div>
     </header>
     <select name="boton" id="filtro">
     </select>
     <div id="filtroBusqueda">
       <input type="text" id="buscar" />
-      <button type="submit" id="buscarBtn">Buscar</button>
     </div>
     <main id="contenedor">
       <div id="volverAtras"></div>
@@ -32,6 +40,13 @@
         </a>
       </p>
     </footer>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
     <script src="./js/config.js"></script>
     <script src="./js/script.js"></script>
   </body>

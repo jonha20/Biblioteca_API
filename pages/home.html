@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <title>BooksAPI</title>
+</head>
+<body>
+    <main>
+    <h2>New York Times Books API: Inicio de sesion / Registro</h2>
+    <article class="container" id="container">
+        <section class="form-container sign-up-container">
+            <form id="singup" action="#" method="post">
+                <h1>Registro</h1>
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Contraseña" />
+                <input type="password" name="password1" placeholder="Repite la contraseña" />
+                <button>Registrate</button>
+            </form>
+        </section>
+        <section class="form-container sign-in-container">
+            <form id="singin" action="#" method="get">
+                <h1>Inicia sesion</h1>
+                <input type="email" name="email2" placeholder="Email" />
+                <input type="password" name="password" placeholder="Contraseña" />
+                <a href="#">Olvidaste tu contraseña?</a>
+                <button>Iniciar sesion</button>
+            </form>
+        </section>
+        <section class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bienvenido de nuevo!</h1>
+                    <p>Para mantenerte conectado, por favor, introduce tus datos</p>
+                    <button class="ghost" id="signIn">Inicia Sesion</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Bienvenido!</h1>
+                    <p>Introduce tus detalles personales y conoce nuestra web</p>
+                    <button class="ghost" id="signUp">Registrate</button>
+                </div>
+            </div>
+        </section>
+    </article>
+  
+</main>
+<footer>
+    <p>
+      Desarrollado por Jonathan Moran Cabrejas
+      <a href="https://github.com/jonha20" target="_blank" id="github-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+      </a>
+      <a href="https://www.linkedin.com/in/jonathan812000/" target="_blank" id="linkedin-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+      </a>
+    </p>
+  </footer>
+ <!-- Firebase Core SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+<!-- Firebase Authentication SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+<!-- Firebase Firestore SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+
+<!-- Tu archivo JavaScript -->
+<script src="../js/home.js"></script>
+
+    
+</body>
+</html>
